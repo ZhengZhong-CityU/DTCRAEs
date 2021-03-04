@@ -15,6 +15,24 @@ import time
 import matplotlib.pyplot as plt
 import itertools
 
+
+#####  this code can be used to avoid the http error when downloading datasets
+import urllib
+try:
+    # For python 2
+    class AppURLopener(urllib.FancyURLopener):
+        version = "Mozilla/5.0"
+
+    urllib._urlopener = AppURLopener()
+except AttributeError:
+    # For python 3
+    opener = urllib.request.build_opener()
+    opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+    urllib.request.install_opener(opener)
+    
+    
+    
+
 class DTCRAE():
     def __init__(self, args, device):
         self.args=args
